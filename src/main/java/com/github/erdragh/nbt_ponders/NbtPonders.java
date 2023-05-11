@@ -1,4 +1,4 @@
-package com.example.modid;
+package com.github.erdragh.nbt_ponders;
 
 import com.simibubi.create.Create;
 
@@ -10,9 +10,9 @@ import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ExampleMod implements ModInitializer {
-	public static final String ID = "modid";
-	public static final String NAME = "Example Mod";
+public class NbtPonders implements ModInitializer {
+	public static final String ID = "nbt_ponders";
+	public static final String NAME = "NBT-Ponders";
 	public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
 
 	@Override

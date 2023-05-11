@@ -1,25 +1,30 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "nbt_ponders",
   "version": "${version}",
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "NBT-Ponders",
+  "description": "Allows loading different Ponders based on item NBT",
   "authors": [
-    "Me!"
+    {
+      "name": "Erdragh",
+      "contact": {
+        "email": "enderjanyt@gmail.com"
+      }
+    }
   ],
   "contact": {
-    "sources": "https://github.com/Fabricators-of-Create/create-fabric-addon-template"
+    "sources": "https://github.com/Erdragh/NBT-Ponders"
   },
-  "license": "CC0",
+  "license": "MIT",
   "icon": "assets/modid/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.example.modid.ExampleMod"
+      "com.github.erdragh.nbt_ponders.NbtPonders"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "nbt_ponders.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
