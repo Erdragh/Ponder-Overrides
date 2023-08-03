@@ -6,6 +6,8 @@
   "mixins": [
   ],
   "client": [
+    "PonderUIMixin",
+    "PonderUIAccessorMixin"
   ],
   "injectors": {
     "defaultRequire": 1

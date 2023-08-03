@@ -1,5 +1,6 @@
 package com.github.erdragh.nbt_ponders.mixin;
 
+import com.github.erdragh.nbt_ponders.NbtPonders;
 import com.simibubi.create.foundation.ponder.PonderTag;
 import com.simibubi.create.foundation.ponder.ui.PonderUI;
 
@@ -18,6 +19,7 @@ public class PonderUIMixin {
 
 	@Inject(method = "of(Lnet/minecraft/world/item/ItemStack;)Lcom/simibubi/create/foundation/ponder/ui/PonderUI;", at = @At("HEAD"), cancellable = true)
 	private static void nbt_ponders$of(ItemStack item, CallbackInfoReturnable<PonderUI> cir) {
+		NbtPonders.LOGGER.info("pondering {}", item);
 		if (item.getOrCreateTag().contains("nbt_ponders_ponder_id")) {
 			var ponderId = new ResourceLocation(item.getOrCreateTag().getString("nbt_ponders_ponder_id"));
 			cir.setReturnValue(PonderUI.of(ponderId));
@@ -27,6 +29,7 @@ public class PonderUIMixin {
 
 	@Inject(method = "of(Lnet/minecraft/world/item/ItemStack;Lcom/simibubi/create/foundation/ponder/PonderTag;)Lcom/simibubi/create/foundation/ponder/ui/PonderUI;", at = @At("HEAD"), cancellable = true)
 	private static void nbt_ponders$of(ItemStack item, PonderTag tag, CallbackInfoReturnable<PonderUI> cir) {
+		NbtPonders.LOGGER.info("pondering {} with tag {}", item, tag);
 		if (item.getOrCreateTag().contains("nbt_ponders_ponder_id")) {
 			var ponderId = new ResourceLocation(item.getOrCreateTag().getString("nbt_ponders_ponder_id"));
 			var ui = PonderUI.of(ponderId);
