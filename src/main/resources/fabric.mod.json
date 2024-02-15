@@ -8,7 +8,7 @@
     {
       "name": "Erdragh",
       "contact": {
-        "email": "enderjanyt@gmail.com"
+        "email": "mail@erdragh.dev"
       }
     }
   ],
@@ -16,7 +16,7 @@
     "sources": "https://github.com/Erdragh/NBT-Ponders"
   },
   "license": "MIT",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/nbt_ponders/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -29,7 +29,7 @@
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": ">=${fabric_api_version}",
-    "create": "${create_version}",
+    "create": ">=${create_version}",
     "minecraft": "${minecraft_version}"
   }
 }
