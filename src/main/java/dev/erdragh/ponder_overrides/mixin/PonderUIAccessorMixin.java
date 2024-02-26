@@ -1,4 +1,4 @@
-package com.github.erdragh.nbt_ponders.mixin;
+package dev.erdragh.ponder_overrides.mixin;
 
 import com.simibubi.create.foundation.ponder.PonderTag;
 import com.simibubi.create.foundation.ponder.ui.PonderUI;

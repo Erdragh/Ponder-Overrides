@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "nbt_ponders",
-  "version": "${version}",
-  "name": "NBT-Ponders",
-  "description": "Allows loading different Ponders based on item NBT",
+  "id": "${archives_base_name}",
+  "version": "${mod_version}",
+  "name": "Ponder-Overrides",
+  "description": "Allows loading different Ponders via KubeJS event",
   "authors": [
     {
       "name": "Erdragh",
@@ -13,23 +13,24 @@
     }
   ],
   "contact": {
-    "sources": "https://github.com/Erdragh/NBT-Ponders"
+    "sources": "https://github.com/Erdragh/Ponder-Overrides"
   },
   "license": "MIT",
-  "icon": "assets/nbt_ponders/icon.png",
+  "icon": "assets/ponder_overrides/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "com.github.erdragh.nbt_ponders.NbtPonders"
+    "client": [
+      "dev.erdragh.ponder_overrides.PonderOverrides"
     ]
   },
   "mixins": [
-    "nbt_ponders.mixins.json"
+    "ponder_overrides.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": ">=${fabric_api_version}",
     "create": ">=${create_version}",
-    "minecraft": "${minecraft_version}"
+    "minecraft": "${minecraft_version}",
+    "kubejs": "${kubejs_version}"
   }
 }
