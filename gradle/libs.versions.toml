@@ -1,0 +1,46 @@
+[versions]
+
+# Minecraft
+minecraft = "1.18.2"
+parchment = "2022.11.06"
+
+# Fabric
+fabricLoader = "0.16.3"
+# KubeJS
+kubejs = "1802.5.5-build.569"
+
+# Create
+create = "0.5.1-f-build.1415+mc1.18.2"
+
+# Recipe Viewers
+jei = "10.2.1.283"
+rei = "8.3.583"
+emi = "0.5.3+1.18.2"
+
+# Development QOL
+modmenu = "3.2.5"
+lazydfu = "0.1.2"
+
+# Plugins
+loom = "1.7-SNAPSHOT"
+machete = "1.+"
+
+[libraries]
+minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+
+fabricLoader = { module = "net.fabricmc:fabric-loader", version.ref = "fabricLoader" }
+
+kubejs = { module = "dev.latvian.mods:kubejs-fabric", version.ref = "kubejs" }
+
+create = { module = "com.simibubi.create:create-fabric-1.18.2", version.ref = "create" }
+
+jei = { module = "mezz.jei:jei-1.18.2-fabric", version.ref = "jei" }
+rei = { module = "me.shedanial:RoughlyEnoughItems-fabric", version.ref = "rei" }
+emi = { module = "dev.emi:emi", version.ref = "emi" }
+
+modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
+lazydfu = { module = "maven.modrinth:lazydfu", version.ref = "lazydfu" }
+
+[plugins]
+loom = { id = "fabric-loom", version.ref = "loom" }
+machete = { id = "io.github.p03w.machete", version.ref = "machete" }
