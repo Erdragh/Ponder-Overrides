@@ -7,8 +7,8 @@ plugins {
     alias(libs.plugins.machete)
 }
 
-base.archivesBaseName = project.property("archives_base_name") as String
-group = project.property("maven_group") as String
+base.archivesName = project.properties["archives_base_name"] as String
+group = project.properties["maven_group"] as String
 
 // Formats the mod version to include the Minecraft version and build number (if present)
 // example: 1.0.0+1.18.2-100
@@ -20,8 +20,6 @@ version = "${modVersion}+${libs.versions.minecraft}" + (if (buildNumber != null)
 repositories {
     maven(url = "https://maven.shedaniel.me/") // Cloth Config, REI
     maven(url = "https://dvs1.progwml6.com/files/maven/") // JEI
-    maven(url = "https://maven.parchmentmc.org") // Parchment mappings
-    maven(url = "https://maven.quiltmc.org/repository/release") // Quilt Mappings
     maven(url = "https://api.modrinth.com/maven") // LazyDFU
     maven(url = "https://maven.terraformersmc.com/releases/") // Mod Menu
     maven(url = "https://mvn.devos.one/snapshots/") // Create, Porting Lib, Forge Tags, Milk Lib, Registrate
@@ -47,10 +45,7 @@ repositories {
 dependencies {
 	// Setup
 	minecraft(libs.minecraft)
-	mappings(loom.layered {
-		parchment("org.parchmentmc.data:parchment-${libs.versions.minecraft.get()}:${libs.versions.parchment.get()}@zip")
-		officialMojangMappings { nameSyntheticMembers = false }
-	})
+	mappings(loom.officialMojangMappings())
 	modImplementation(libs.fabricLoader)
 
 	// Create - dependencies are added transitively
@@ -83,12 +78,18 @@ dependencies {
 
 tasks.processResources {
 	// require dependencies to be the version compiled against or newer
-	val properties = Properties()
-	properties.load(FileInputStream(rootProject.file("gradle.properties")))
-	properties.forEach { k, v -> inputs.property("$k", v) }
+    val replacements = mapOf(
+        "archives_base_name" to base.archivesName.get(),
+        "mod_version" to modVersion,
+        "fabric_loader_version" to libs.versions.fabricLoader.get(),
+        "create_version" to libs.versions.create.get(),
+        "minecraft_version" to libs.versions.minecraft.get(),
+        "kubejs_version" to libs.versions.kubejs.get()
+    )
+    inputs.properties(replacements)
 
 	filesMatching("fabric.mod.json") {
-		expand(properties.entries.associate { "${it.key}" to it.value })
+		expand(replacements)
 	}
 }
 
@@ -104,6 +105,11 @@ java {
 
 tasks.jar {
 	from("LICENSE") {
-		rename { "${it}_${base.archivesBaseName}" }
+		rename { "${it}_${base.archivesName.get()}" }
 	}
+}
+
+// Force fabric loader version to fix duplicate loader classes problem
+configurations.configureEach {
+    resolutionStrategy.force("net.fabricmc:fabric-loader:${libs.versions.fabricLoader.get()}")
 }
