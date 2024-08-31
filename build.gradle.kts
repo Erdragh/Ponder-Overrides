@@ -14,8 +14,7 @@ group = project.properties["maven_group"] as String
 // example: 1.0.0+1.18.2-100
 val modVersion: String by project
 val buildNumber = System.getenv("GITHUB_RUN_NUMBER")
-version = "${modVersion}+${libs.versions.minecraft}" + (if (buildNumber != null) "-${buildNumber}" else "")
-
+version = "${modVersion}+${libs.versions.minecraft.get()}" + (if (buildNumber != null) "-${buildNumber}" else "")
 
 repositories {
     maven(url = "https://maven.shedaniel.me/") // Cloth Config, REI
@@ -80,7 +79,7 @@ tasks.processResources {
 	// require dependencies to be the version compiled against or newer
     val replacements = mapOf(
         "archives_base_name" to base.archivesName.get(),
-        "mod_version" to modVersion,
+        "mod_version" to version,
         "fabric_loader_version" to libs.versions.fabricLoader.get(),
         "create_version" to libs.versions.create.get(),
         "minecraft_version" to libs.versions.minecraft.get(),
